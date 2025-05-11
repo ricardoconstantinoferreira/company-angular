@@ -32,6 +32,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -67,7 +68,8 @@
               "buildTarget": "company:build:production"
             },
             "development": {
-              "buildTarget": "company:build:development"
+              "buildTarget": "company:build:development",
+              "proxyConfig": "src/proxy.config.js"
             }
           },
           "defaultConfiguration": "development"
@@ -91,6 +93,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -98,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

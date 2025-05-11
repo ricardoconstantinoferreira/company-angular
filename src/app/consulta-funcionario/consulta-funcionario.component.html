@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <div fxLayout="column" fxFlex="1000px">
+      
+        <div fxLayout="row" fxLayoutAlign="center" class="mt-20">
+            <div fxLayout="column" fxFlex="1000px">
+                <mat-card appearance="outlined">
+                    <mat-card-header>
+                        <mat-card-title>Resultado</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+    
+                        <table mat-table [dataSource]="funcionarios">
+    
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef>Id</th>
+                                <td mat-cell *matCellDef="let funcionario">{{ funcionario.id }}</td>
+                            </ng-container>
+    
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                                <td mat-cell *matCellDef="let funcionario">{{ funcionario.name }}</td>
+                            </ng-container>
+    
+                            <ng-container matColumnDef="cargo">
+                                <th mat-header-cell *matHeaderCellDef>Cargo</th>
+                                <td mat-cell *matCellDef="let funcionario">{{ funcionario.cargo }}</td>
+                            </ng-container>
+    
+                            <ng-container matColumnDef="razao_social">
+                                <th mat-header-cell *matHeaderCellDef>Nome Empresa</th>
+                                <td mat-cell *matCellDef="let funcionario">{{ funcionario.empresa.razao_social }}</td>
+                            </ng-container>
+    
+                            <ng-container matColumnDef="acoes">
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let funcionario">
+                                    <button type="button" mat-button (click)="edit(funcionario.id)">
+                                        <mat-icon fontIcon="edit"></mat-icon>
+                                        Editar
+                                    </button>
+
+                                    <button type="button" mat-button (click)="delete(funcionario)">
+                                        <mat-icon fontIcon="delete"></mat-icon>
+                                        Deletar
+                                    </button>
+                                </td>
+                            </ng-container>
+                            
+    
+                            <tr mat-header-row *matHeaderRowDef="colunasTable"></tr>
+                            <tr mat-row *matRowDef="let row; columns: colunasTable" ></tr>
+                        </table>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

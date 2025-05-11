@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="form-box">
+        <form class="form" #clientesFrm="ngForm" (ngSubmit)="save(empresa)">
+            <h2>Cadastro de Empresa</h2>
+            <label>Razão Social:</label>
+            <input type="text" name="razao_social" [(ngModel)]="empresa.razao_social" />
+            <label>Nome Fantasia:</label>
+            <input type="text" name="nome_fantasia" [(ngModel)]="empresa.nome_fantasia" />
+            <label>CNPJ:</label>
+            <input type="text" name="cnpj" [(ngModel)]="empresa.cnpj" />
+           
+            @if(!updated) {
+                <button type="submit">Cadastrar</button>
+            } @else {
+                <button type="submit">Atualizar</button>
+            }
+
+        </form>
+    </div>
+
+    
+</div>

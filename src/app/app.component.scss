@@ -1,0 +1,15 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.menu {
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    display: block;
+    color: #FFF;
+}
+
+.menu:hover {
+    background-color: #FFF;
+    color: #000;
+}
