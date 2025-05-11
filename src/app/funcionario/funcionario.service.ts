@@ -15,6 +15,11 @@ export class FuncionarioService {
         return this.http.get<Funcionario[]>(uri);
     }
 
+    searchByEmpresaId(id: string) {
+        let uri = `api/employee/company/${id}`;
+        return this.http.get<Funcionario[]>(uri);
+    }
+
     save(funcionario: Funcionario, updated: boolean): Observable<any> {
         let uri = "api/employee"
         const options = { headers: { 'Content-Type': 'application/json' } };

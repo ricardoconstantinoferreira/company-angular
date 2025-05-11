@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FuncionarioService } from '../funcionario/funcionario.service';
 
@@ -27,11 +27,29 @@ export class ConsultaFuncionarioComponent implements OnInit {
 
   constructor(
     private funcionarioService: FuncionarioService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-      this.startList();
+    this.route.queryParamMap.subscribe((query: any) => {
+      const id = query['params']['empresaId'];
+
+      if (id) {
+        this.startListByIdEmpresa(id);
+      } else {
+        this.startList();
+      }
+    });
+  }
+
+  startListByIdEmpresa(id: string) {
+    this.funcionarioService.searchByEmpresaId(id).subscribe({
+      next: (response) => {
+        this.funcionarios = response;
+      },
+      error: erro => console.log("Ocorreu um erro ", erro)
+    });
   }
 
   startList() {

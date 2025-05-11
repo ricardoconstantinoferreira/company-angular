@@ -47,6 +47,10 @@ export class ConsultaEmpresaComponent implements OnInit {
     this.router.navigate(['/empresa'], {queryParams: {"id": id}});
   }
 
+  person(id: string) {
+    this.router.navigate(['/consulta-funcionario'], {queryParams: {"empresaId": id}});
+  }
+
   delete(empresa: Empresa) {
     let id = (empresa.id !== undefined) ? empresa.id : "";
 
