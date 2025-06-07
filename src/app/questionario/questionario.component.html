@@ -21,10 +21,10 @@
                 <label>Perguntas:</label>
 
                 @for (pergunta of perguntas; track pergunta.id) {
-                    <div class="perguntas">{{ pergunta.descricao }}</div>
+                    <label>{{ pergunta.descricao }}</label>
                     <input type="text" name="pergunta[]" id="pergunta" [(ngModel)]="pergunta.resposta" />
                 } @empty {
-                    <div> Não existe perguntas </div>
+                    <label> Não existe perguntas </label>
                 }
 
                 <button type="submit">Responder</button>
