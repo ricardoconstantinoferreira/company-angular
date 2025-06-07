@@ -4,7 +4,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { Funcionario } from '../funcionario/funcionario';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FuncionarioService } from '../funcionario/funcionario.service';
 import { Titulo } from '../titulo/titulo';
 import { TituloService } from '../titulo/titulo.service';
@@ -36,9 +35,7 @@ export class QuestionarioComponent implements OnInit {
   constructor(
     private funcionarioService: FuncionarioService,
     private tituloService: TituloService,
-    private respostaService: RespostaService,
-    private route: ActivatedRoute,
-    private router: Router
+    private respostaService: RespostaService
   ) {}
 
   ngOnInit(): void {
@@ -90,8 +87,7 @@ export class QuestionarioComponent implements OnInit {
     this.respostaService.save(questionario).subscribe({
       next: (response) => {
         if (response !== null) {
-          this.snack.open("Resposta enviada com sucesso!");
-          this.router.navigate(['/questionario']);
+          this.snack.open("Resposta enviada com sucesso!", "OK");
           this.clear();
         }
       }
@@ -99,8 +95,9 @@ export class QuestionarioComponent implements OnInit {
   }
 
   clear() {
-    this.questionario.funcionario_id = "";
-    this.questionario.titulo_id = "";
-    this.questionario.pergunta = [];
+    this.selectedFuncionario = "";
+    this.selectedTitulo = "";
+    this.titleOptionSelected = "";
+    this.perguntas = [];
   }
 }
