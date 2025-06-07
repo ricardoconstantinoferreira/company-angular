@@ -1,1 +1,36 @@
-<p>questionario works!</p>
+<div class="container">
+    <div class="form-box">
+        <form class="form" #clientesFrm="ngForm" (ngSubmit)="save(questionario)">
+            <h2>Questionário para responder</h2>
+            <label>Funcionário:</label>
+            <select matNativeControl [(ngModel)]="selectedFuncionario" name="funcionario">
+                @for (funcionario of funcionarios; track funcionario) {
+                    <option [value]="funcionario.id">{{funcionario.name}}</option>
+                }
+            </select>
+            <br />
+            <label>Titulo:</label>
+            <select matNativeControl [(ngModel)]="selectedTitulo" name="titulo" (change)="getQuestions($event)">
+                @for (titulo of titulos; track titulo) {
+                    <option [value]="titulo.id">{{titulo.descricao}}</option>
+                }
+            </select>
+            <br />
+
+            @if (titleOptionSelected != undefined && titleOptionSelected != "") {
+                <label>Perguntas:</label>
+
+                @for (pergunta of perguntas; track pergunta.id) {
+                    <div class="perguntas">{{ pergunta.descricao }}</div>
+                    <input type="text" name="pergunta[]" id="pergunta" [(ngModel)]="pergunta.resposta" />
+                } @empty {
+                    <div> Não existe perguntas </div>
+                }
+
+                <button type="submit">Responder</button>
+            }
+        </form>
+    </div>
+
+    
+</div>

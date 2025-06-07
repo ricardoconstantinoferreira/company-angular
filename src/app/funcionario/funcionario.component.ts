@@ -93,9 +93,7 @@ export class FuncionarioComponent implements OnInit {
   clear() {
     this.funcionario.name = "";
     this.funcionario.cargo = "";
-
-    debugger;
-
+    
     if (this.funcionario.empresa_id !== undefined) {
       this.selectedEmpresa = ""
     }
