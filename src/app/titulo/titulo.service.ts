@@ -13,4 +13,9 @@ export class TituloService {
         let uri = "api/title";
         return this.http.get<Titulo[]>(uri);
     }
+
+    searchTitleById(id: string) {
+        let uri = `api/title/${id}`;
+        return this.http.get<Titulo>(uri);
+    }
 }

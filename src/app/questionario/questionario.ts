@@ -1,5 +1,7 @@
+import { Pergunta } from "./pergunta";
+
 export class Questionario {
-    titulo?: string;
-    funcionario?: string;
-    pergunta?: string[] = [];
+    titulo_id?: string;
+    funcionario_id?: string;
+    pergunta?: Pergunta[] = [];
 }
