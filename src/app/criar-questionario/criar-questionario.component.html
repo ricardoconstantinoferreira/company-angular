@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="form-box">
+        <form class="form" #clientesFrm="ngForm" (ngSubmit)="save(titulo)">
+            <h2>Questionário para Criar</h2>
+            <label>Titulo:</label>
+             <input type="text" name="descricao" [(ngModel)]="titulo.descricao" />
+            <br />
+            
+            <label>Perguntas: <button class="button_more" type="button" (click)="addQuestion()">+</button></label>
+
+            @for (pergunta of perguntasArray; track pergunta) {
+                <label>Pergunta {{ pergunta }}:</label>
+                <input type="text" [(ngModel)]="perguntaDescricao[pergunta-1]" name="perguntaDescricao[]" />
+                <button class="button_more" type="button" (click)="removeQuestion()">-</button>
+            }
+
+            <button type="submit">Responder</button>
+            
+        </form>
+    </div>
+
+    
+</div>

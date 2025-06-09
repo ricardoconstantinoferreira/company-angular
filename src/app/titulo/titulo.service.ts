@@ -18,4 +18,15 @@ export class TituloService {
         let uri = `api/title/${id}`;
         return this.http.get<Titulo>(uri);
     }
+
+    save(descricao: string, perguntas: any) {
+        let uri = "api/title";
+        const options = { headers: { 'Content-Type': 'application/json' } };
+        let data = {
+            descricao: descricao,
+            perguntas: perguntas
+        };
+
+        return this.http.post(uri, JSON.stringify(data), options);
+    }
 }
