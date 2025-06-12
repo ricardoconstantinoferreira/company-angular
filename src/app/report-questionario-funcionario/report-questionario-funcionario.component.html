@@ -1,1 +1,33 @@
-<p>report-questionario-funcionario works!</p>
+<div class="container">
+    <div class="form-box">
+        <form class="form" #clientesFrm="ngForm">
+            <h2>Questionário para responder</h2>
+            <label>Funcionário:</label>
+            <mat-form-field class="example-full-width">
+                <mat-label>Funcionario</mat-label>
+                <input type="text" (change)="send($event)"
+                    placeholder="Funcionário"
+                    aria-label="Funcionário"
+                    matInput
+                    [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{option}}</mat-option>
+                }
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <br />
+            <label>Titulo:</label>
+            <select matNativeControl [(ngModel)]="selectedTitulo" name="titulo" (change)="getQuestionsAndAnswers($event)">
+                @for (titulo of titulos; track titulo) {
+                    <option [value]="titulo.id">{{titulo.descricao}}</option>
+                }
+            </select>
+            <br />
+        </form>
+    </div>
+
+    
+</div>
