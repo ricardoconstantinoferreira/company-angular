@@ -21,8 +21,8 @@ export class RespostaService {
         return this.http.post(uri, JSON.stringify(data), options);
     }
 
-    getAnswerWithQuestionDescription(id: string) {
-        let uri = `api/answer/answer-by-question-id/${id}`;
+    getAnswerWithQuestionDescription(perguntaId: string, funcionarioId: string) {
+        let uri = `api/answer/answer-by-question-id/${perguntaId}/${funcionarioId}`;
         return this.http.get<Resposta>(uri);
     }
 }
