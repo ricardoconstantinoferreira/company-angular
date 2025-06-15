@@ -29,4 +29,9 @@ export class TituloService {
 
         return this.http.post(uri, JSON.stringify(data), options);
     }
+
+    searchQuestionByEmployee(id: string) {
+        let uri = `api/title//get-title-by-employee/${id}`;
+        return this.http.get<string[]>(uri);
+    }
 }
