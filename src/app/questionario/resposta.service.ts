@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Questionario } from "./questionario";
+import { Resposta } from "./resposta";
 
 @Injectable({
     providedIn: 'root'
@@ -18,5 +19,10 @@ export class RespostaService {
         };
 
         return this.http.post(uri, JSON.stringify(data), options);
+    }
+
+    getAnswerWithQuestionDescription(id: string) {
+        let uri = `api/answer/answer-by-question-id/${id}`;
+        return this.http.get<Resposta>(uri);
     }
 }
