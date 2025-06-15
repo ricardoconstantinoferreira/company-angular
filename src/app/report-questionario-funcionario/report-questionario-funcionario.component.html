@@ -18,21 +18,17 @@
                 </mat-autocomplete>
             </mat-form-field>
 
-            <br />
             <label>Titulo:</label>
             <select matNativeControl [(ngModel)]="selectedTitulo" name="titulo" (change)="getQuestionsAndAnswers($event)">
                 @for (titulo of titulos; track titulo) {
                     <option [value]="titulo.id">{{titulo.descricao}}</option>
                 }
             </select>
-            <br />
 
             @if (respostas !== undefined) {
                 @for (resposta of respostas; track $index) {
-                    <div class="pergunta">Pergunta: {{resposta.pergunta?.descricao}} </div>
-                    <br />
-                    <div class="resposta">Resposta: {{resposta.description}} </div>
-                    <br /><br />
+                    <div class="pergunta"><span>Pergunta:</span> {{resposta.pergunta?.descricao}} </div>
+                    <div class="resposta"><span>Resposta:</span> {{resposta.description}} </div>
                 }
             }
 

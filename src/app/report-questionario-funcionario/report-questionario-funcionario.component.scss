@@ -54,3 +54,31 @@ form.form input {
     width: 80%;
     border-radius: 4px;
 }
+
+select {
+    background-color: var(--mdc-filled-text-field-container-color, var(--mat-sys-surface-variant));
+    color: #fff;
+    width: 80%;
+    padding: 2%;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.pergunta {
+    margin-top: 3%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.pergunta span {
+    font-weight: bold;
+}
+
+.resposta {
+    text-align: left;
+    font-family: inherit;
+}
+
+.resposta span {
+    font-weight: bold;
+}

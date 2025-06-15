@@ -73,15 +73,16 @@ export class ReportQuestionarioFuncionarioComponent implements OnInit {
   }
 
   getQuestionsAndAnswers(event: any) {
-    let id = event.target.value;
+    let tituloId = event.target.value;
+    let funcionarioId = this.myControl.value.id;
 
-    this.tituloService.searchTitleById(id).subscribe({
+    this.tituloService.searchTitleById(tituloId).subscribe({
       next: (response) => {
         let perguntas = response.pergunta;
 
         if (perguntas !== undefined) {
           perguntas.forEach((value, idx) => {
-            this.addResponses(value.id);
+            this.addResponses(value.id, funcionarioId);
           });
         }
       },
@@ -92,16 +93,16 @@ export class ReportQuestionarioFuncionarioComponent implements OnInit {
     })
   }
 
-  addResponses(id: string|undefined) {
+  addResponses(perguntaId: string|undefined, funcionarioId: string) {
     this.respostas = [];
 
-    if (id !== undefined) {
-      this.respostaService.getAnswerWithQuestionDescription(id).subscribe({
+    if (perguntaId !== undefined) {
+      this.respostaService.getAnswerWithQuestionDescription(perguntaId, funcionarioId).subscribe({
         next: (result) => {
           this.respostas.push({
             "description": result.description,
             "pergunta": result.pergunta
-          });    
+          });          
         },
 
         error: (error) => {
@@ -117,6 +118,15 @@ export class ReportQuestionarioFuncionarioComponent implements OnInit {
     if (id !== undefined) {
       this.tituloService.searchQuestionByEmployee(id).subscribe({
         next: (response) => {
+
+          this.selectedTitulo = ""
+
+          this.options = [];
+          this.respostas = [];
+          this.titulos = [{
+            "id": "",
+            "descricao": ""
+          }];
 
           Object.entries(response).forEach(([key, value]) => {
             this.titulos.push({
