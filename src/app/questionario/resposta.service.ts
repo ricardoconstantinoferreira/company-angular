@@ -25,4 +25,13 @@ export class RespostaService {
         let uri = `api/answer/answer-by-question-id/${perguntaId}/${funcionarioId}`;
         return this.http.get<Resposta>(uri);
     }
+
+    /**
+     * Retorna quantidade de respostas por empresa
+     * Espera um array de objetos: [{ company: 'Empresa A', count: 12 }, ...]
+     */
+    getAnswersByCompany() {
+        const uri = `api/answer/answer-by-company`;
+        return this.http.get<any[]>(uri);
+    }
 }

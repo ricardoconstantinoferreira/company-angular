@@ -1,0 +1,12 @@
+<div class="respostas-empresa-root">
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <div *ngIf="data.length === 0 && !errorMessage" class="empty">Nenhum dado disponível</div>
+
+  <div class="chart-area" *ngIf="data.length > 0">
+    <canvas #pieCanvas></canvas>
+  </div>
+
+  <div class="summary" *ngIf="data.length > 0">
+    <p><strong>Total de respostas:</strong> {{ total }}</p>
+  </div>
+</div>
