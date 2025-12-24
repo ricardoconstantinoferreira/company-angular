@@ -37,7 +37,7 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
   }
 
   private resolveValue(item: any): number {
-    const raw = item.count ?? item.total ?? item.qtd ?? item.value ?? item.countAnswers ?? 0;
+    const raw = item.totalRespostas ?? 0;
     const num = Number(raw);
     return Number.isFinite(num) ? num : 0;
   }
@@ -45,12 +45,12 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
   loadData() {
     this.respostaService.getAnswersByCompany().subscribe({
       next: (res: any[]) => {
-        // Debug log to help trace data format in case of mismatch
         console.debug('RespostaService.getAnswersByCompany -> raw:', res);
 
         this.data = (res || []).map((item: any, idx: number) => {
           const label = this.resolveLabel(item, idx);
           const value = this.resolveValue(item);
+
           return { label, value, color: this.pickColor(idx) };
         }).filter(d => d.value > 0);
 
@@ -61,12 +61,10 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
           return;
         }
 
-        // Garante que o canvas esteja presente e executa o desenho em um frame
         const attemptDraw = () => {
           if (this.pieCanvas && this.pieCanvas.nativeElement) {
             requestAnimationFrame(() => this.draw());
           } else {
-            // Tenta novamente em breve
             setTimeout(attemptDraw, 50);
           }
         };
@@ -114,12 +112,11 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
     const centerY = height / 2;
     const radius = Math.min(width, height) / 3;
 
-    let startAngle = -Math.PI / 2; // start at top
+    let startAngle = -Math.PI / 2; 
 
     this.data.forEach(d => {
       const sliceAngle = (d.value / this.total) * Math.PI * 2;
 
-      // draw slice
       ctx.beginPath();
       ctx.moveTo(centerX, centerY);
       ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
@@ -130,7 +127,6 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
       startAngle += sliceAngle;
     });
 
-    // Draw legend
     const legendX = 10;
     let legendY = 10;
     const boxSize = 12;
@@ -148,7 +144,6 @@ export class RespostasEmpresaComponent implements OnInit, AfterViewInit {
       legendY += boxSize + 8;
     });
 
-    // Draw title
     ctx.fillStyle = '#222';
     ctx.font = 'bold 16px Arial';
     ctx.textAlign = 'center';
