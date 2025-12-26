@@ -1,0 +1,28 @@
+<div class="respostas-funcionarios">
+  <div class="header">
+    <h2>Respostas por Funcionários</h2>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div *ngIf="data.length > 0; else loading" class="content">
+    <ul class="legend-list">
+      <li *ngFor="let d of data">
+        <span class="color-box" [style.background]="d.color"></span>
+        <div class="label-wrap">
+          <div class="label">{{ d.label }}</div>
+          <div class="value">({{ d.value }})</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="canvas-wrapper">
+      <canvas #pieCanvas role="img" aria-label="Gráfico de pizza de respostas"></canvas>
+      <div class="total">Total: {{ total }}</div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div *ngIf="!errorMessage" class="loading">Carregando...</div>
+  </ng-template>
+</div>

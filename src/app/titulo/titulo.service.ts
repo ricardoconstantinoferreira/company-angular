@@ -31,7 +31,16 @@ export class TituloService {
     }
 
     searchQuestionByEmployee(id: string) {
-        let uri = `api/title//get-title-by-employee/${id}`;
+        let uri = `api/title/get-title-by-employee/${id}`;
         return this.http.get<string[]>(uri);
+    }
+
+    /**
+     * Retorna títulos/respostas por funcionário (todas as empresas)
+     * Endpoint esperado: api/title/get-title-by-employee-all
+     */
+    getTitlesByEmployeeAll() {
+        const uri = `api/title/get-title-by-employee-all`;
+        return this.http.get<any[]>(uri);
     }
 }
